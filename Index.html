@@ -78,4 +78,32 @@ function move(index) {
 
     const validMoves = [
         index - 1,
-        index
+        index + 1,
+        index - 3,
+        index + 3
+    ];
+
+    if (validMoves.includes(emptyIndex)) {
+        [puzzle[index], puzzle[emptyIndex]] = [puzzle[emptyIndex], puzzle[index]];
+        render();
+        checkWin();
+    }
+}
+
+function shuffle() {
+    puzzle.sort(() => Math.random() - 0.5);
+    render();
+}
+
+function checkWin() {
+    const win = [1,2,3,4,5,6,7,8,""];
+    if (JSON.stringify(puzzle) === JSON.stringify(win)) {
+        setTimeout(() => alert("🎉 Kamu Menang!"), 100);
+    }
+}
+
+render();
+</script>
+
+</body>
+</html>
